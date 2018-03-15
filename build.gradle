@@ -1,0 +1,32 @@
+
+buildscript {
+	apply from: '../pal-gradle/version.gradle'
+
+	repositories {
+		maven { url rootProject.file('../peterlavalle.sbt/target/m2-repo/') }
+		mavenCentral()
+		jcenter()
+		maven { url "http://peterlavalle.com/m2-repo/" }
+		maven {
+			name 'gradle-releases'
+			url 'https://repo.gradle.org/gradle/libs-releases'
+		}
+	}
+	dependencies {
+		classpath "com.peterlavalle:punity:${pal.peterVersion}"
+	}
+}
+
+
+// https://plugins.gradle.org/plugin/com.dorongold.task-tree
+plugins {
+  id "com.dorongold.task-tree" version "1.3"
+}
+
+
+apply from: rootProject.file('../pal-gradle/version.gradle')
+apply plugin: 'peterlavalle.punity'
+
+dependencies {
+	punity 'junit:junit:4.12'
+}
